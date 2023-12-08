@@ -3,6 +3,7 @@ import {Filter} from './components/Filter';
 import {NewTodo} from './components/NewTodo';
 import {TodoList} from './components/TodoList';
 import {TotalTodos} from './components/TotalTodos';
+import FetchTodos from "./components/FetchTodos.jsx";
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
             <Divider/>
             <TotalTodos/>
             <NewTodo/>
+            <FetchTodos/>
         </VStack>
     );
 }

@@ -11,20 +11,21 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 import {useRef} from 'react';
+import {useTodos} from "../store.js";
 
 const NewTodo = () => {
     const {isOpen, onOpen, onClose} = useDisclosure();
+    const addTodo = useTodos(state => state.addTodo)
     const ref = useRef();
 
     const handleAddTodo = () => {
+        addTodo(ref.current.value)
         onClose();
     };
 
     return (
         <>
-            <Button colorScheme="teal" onClick={onOpen}>
-                Add new todo
-            </Button>
+            <Button colorScheme="teal" onClick={onOpen}>Add new todo</Button>
 
             <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
                 <DrawerOverlay/>
@@ -42,12 +43,8 @@ const NewTodo = () => {
                     </DrawerBody>
 
                     <DrawerFooter>
-                        <Button variant="outline" mr={3} onClick={onClose}>
-                            Cancel
-                        </Button>
-                        <Button colorScheme="blue" onClick={handleAddTodo}>
-                            Save
-                        </Button>
+                        <Button variant="outline" mr={3} onClick={onClose}>Cancel</Button>
+                        <Button colorScheme="blue" onClick={handleAddTodo}>Save</Button>
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
